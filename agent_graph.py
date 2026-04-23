@@ -1,4 +1,5 @@
 from typing import TypedDict
+from tools import mock_lead_capture
 from langgraph.graph import StateGraph, END
 
 from intent_detector import detect_intent
@@ -44,9 +45,18 @@ def inquiry_node(state):
 
 # Step 4 → High-intent response
 def high_intent_node(state):
+    print("Agent: Great! I'd love to help you get started.")
+
+    name = input("Agent: Please tell me your name: ")
+    email = input("Agent: Please enter your email: ")
+    platform = input("Agent: Which creator platform do you use? (YouTube/Instagram/etc): ")
+
+    # Tool execution
+    mock_lead_capture(name, email, platform)
+
     return {
         **state,
-        "response": "Great! Let's get your details for signup."
+        "response": "Our team will contact you soon 🚀"
     }
 
 
