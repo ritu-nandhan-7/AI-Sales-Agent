@@ -45,7 +45,11 @@ def inquiry_node(state):
 
 # Step 4 → High-intent response
 def high_intent_node(state):
-    print("Agent: Great! I'd love to help you get started.")
+    # First show Pro Plan details
+    answer = get_answer("pro plan")
+    print("Agent:", answer)
+
+    print("\nAgent: Great! I'd love to help you get started.")
 
     name = input("Agent: Please tell me your name: ")
     email = input("Agent: Please enter your email: ")
